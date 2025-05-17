@@ -4,7 +4,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import sessionmaker
-
 engine = create_engine("sqlite:///gamers.db")
 Session = sessionmaker(bind=engine)
 Base = declarative_base()
@@ -15,9 +14,8 @@ main_socket.bind(("192.168.1.12", 10000))  # IP и порт привязывае
 main_socket.setblocking(False)  # Непрерывность, не ждём ответа
 main_socket.listen(5)  # Прослушка входящих соединений, 5 одновременных подключений
 print("Сокет создался")
-
-
 def find(data):
+
     first = None
     for num, sign in enumerate(data):
         if sign == "<":
@@ -27,23 +25,17 @@ def find(data):
 
             result = data[first + 1:second].split(",")
     return result
-
-
 players = []
-
-
 # Декларативный класс таблицы игроков
 class Player(Base):
-    __tablename__ = "gamers"
-    name = Column(String, primary_key=True)
-    password = Column(String(250))
-    score = Column(Integer, default=0)
+  __tablename__ = "gamers"
+  name = Column(String, primary_key=True)
+  password = Column(String(250))
+  score = Column(Integer, default=0)
 
-    def __init__(self, name, passw):
-        self.name = name
-        self.password = passw
-
-
+  def __init__(self, name, passw):
+      self.name = name
+      self.password = passw
 Base.metadata.create_all(engine)
 
 while True:
@@ -89,5 +81,9 @@ while True:
             players.remove(sock)
         except:
             pass
+
+
+
+
 
     time.sleep(1)

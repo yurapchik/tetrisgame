@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import socket
 import time
+# 192.168.1.12
 
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5 import QtCore, QtGui, QtWidgets

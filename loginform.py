@@ -77,6 +77,14 @@ class Ui_MainWindow(object):
         self.pushButton.setText(_translate("MainWindow", "ВХОД"))
 
 
+import socket
+
+
+def get_local_ip():
+    hostname = socket.gethostname()
+    local_ip = socket.gethostbyname(hostname)
+    return local_ip
+print(f"ваш ip и порт - {get_local_ip()}:10000")
 class Window(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
